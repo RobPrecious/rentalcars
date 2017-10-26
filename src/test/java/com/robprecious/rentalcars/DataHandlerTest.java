@@ -67,15 +67,15 @@ public class DataHandlerTest {
 	@Test
 	public void testGetSpecList() {
 		List<Car> testCars = new ArrayList<Car>();
-		Car car1 = new Car("CDMR","Ford Focus",157.85,"Hertz",8.9);
-		Car car2 = new Car("FVAR","Ford Galaxy",706.89,"Hertz",8.9);
+		Car car1 = new Car("CDMR","B Ford Focus",157.85,"Hertz",8.9);
+		Car car2 = new Car("FVAR","A Ford Galaxy",706.89,"Hertz",8.9);
 		testCars.add(car1);
 		testCars.add(car2);
 
 		DataHandler dh = new DataHandler();
 		
-		String expectedString = "1. Ford Focus - CDMR - Compact - 5 doors - Manual - Petrol - AC\n" + 
-								"2. Ford Galaxy - FVAR - Full size - Passenger Van - Automatic - Petrol - AC\n";
+		String expectedString = "1. A Ford Galaxy - FVAR - Full size - Passenger Van - Automatic - Petrol - AC\n" + 
+								"2. B Ford Focus - CDMR - Compact - 5 doors - Manual - Petrol - AC\n";
 		assertEquals(dh.getSpecList(testCars), expectedString);
 	}
 	

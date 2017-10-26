@@ -50,7 +50,7 @@ public class DataHandler {
 	public String getPriceList(List<Car> cars) {
 		Collections.sort(cars, new Comparator<Car>(){
 		    public int compare(Car c1, Car c2) {
-		        return Double.compare(c1.getDoublePrice(),c2.getDoublePrice());
+		        return Double.compare(c1.getPrice(),c2.getPrice());
 		    }
 		});
 		
@@ -64,6 +64,12 @@ public class DataHandler {
 	}
 	
 	public String getSpecList(List<Car> cars) {
+		Collections.sort(cars, new Comparator<Car>(){
+		    public int compare(Car c1, Car c2) {
+		    		return c1.getName().compareTo(c2.getName());
+		    }
+		});
+		
 		String outputStr = "";
 		Integer index = 1;
 		for (Car car : cars) {

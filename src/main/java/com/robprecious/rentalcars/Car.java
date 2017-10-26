@@ -134,7 +134,11 @@ public class Car {
 		 return score;
 	 }
 	 
-	 public Double getDoublePrice() {
+	 public String getName() {
+		 return this.name;
+	 }
+	 
+	 public Double getPrice() {
 		 return this.price;
 	 }
 	 
@@ -146,7 +150,7 @@ public class Car {
 		 return this.combinedScore;
 	 }
 	 
-	 public String getPrice() {
+	 public String getStringPrice() {
 		 DecimalFormat df = new DecimalFormat();
 		 df.setMaximumFractionDigits(2);
 		 return "£"+df.format(this.price);
@@ -154,7 +158,7 @@ public class Car {
 	 
 	 public String getPriceEntry() {
 		 //	{Vehicle name} – {Price}
-		 return this.name + " - " + this.getPrice();
+		 return this.name + " - " + this.getStringPrice();
 	 }
 	 
 	 public String getSpecEntry() {

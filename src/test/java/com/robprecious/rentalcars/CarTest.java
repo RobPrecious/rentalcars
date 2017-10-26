@@ -17,7 +17,7 @@ public class CarTest {
 
 	@Test
 	public void testGetPrice() {
-		String strPrice = classUnderTest.getPrice();
+		String strPrice = classUnderTest.getStringPrice();
 		assertEquals(strPrice, "£157.85");
 		
 	}
