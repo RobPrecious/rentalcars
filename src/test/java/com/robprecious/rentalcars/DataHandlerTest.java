@@ -12,13 +12,13 @@ import javax.json.JsonObject;
 import org.junit.Before;
 import org.junit.Test;
 
-public class CarsTest {
+public class DataHandlerTest {
 
-	private Cars classUnderTest;
+	private DataHandler classUnderTest;
 	
 	@Before
 	public void setUp() throws Exception {
-		classUnderTest = new Cars();
+		classUnderTest = new DataHandler();
 	}
 
 	@Test

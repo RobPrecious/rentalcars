@@ -8,7 +8,7 @@ import javax.json.Json;
 import javax.json.JsonObject;
 import javax.json.JsonReader;
 
-public class Cars implements Parser {
+public class DataHandler {
 
 	public JsonObject getJSON(URL url) {
 		InputStream is;
@@ -23,5 +23,7 @@ public class Cars implements Parser {
 		return obj;
 		
 	}
+	
+	
 
 }
