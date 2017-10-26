@@ -134,6 +134,18 @@ public class Car {
 		 return score;
 	 }
 	 
+	 public Double getDoublePrice() {
+		 return this.price;
+	 }
+	 
+	 public Double getRating() {
+		 return this.rating;
+	 }
+	 
+	 public Double getCombinedScore() {
+		 return this.combinedScore;
+	 }
+	 
 	 public String getPrice() {
 		 DecimalFormat df = new DecimalFormat();
 		 df.setMaximumFractionDigits(2);
