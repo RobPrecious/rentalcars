@@ -91,6 +91,8 @@ public class Car {
 	 			break;
 			 case 'V' : this.form = "Passenger Van";
 	 			break;
+			 case 'X' : this.form = "Special"; ///!!!! This is to avoid null value - X specified under car type not door/car type
+	 			break;
 			 default: break;
 		 }
 		 
@@ -134,6 +136,12 @@ public class Car {
 		 return score;
 	 }
 	 
+	 private String getStringPrice() {
+		 DecimalFormat df = new DecimalFormat();
+		 df.setMaximumFractionDigits(2);
+		 return "£"+df.format(this.price);
+	 }
+	 
 	 public String getName() {
 		 return this.name;
 	 }
@@ -150,12 +158,8 @@ public class Car {
 		 return this.combinedScore;
 	 }
 	 
-	 public String getStringPrice() {
-		 DecimalFormat df = new DecimalFormat();
-		 df.setMaximumFractionDigits(2);
-		 return "£"+df.format(this.price);
-	 }
 	 
+	 // For use with Console 
 	 public String getPriceEntry() {
 		 //	{Vehicle name} – {Price}
 		 return this.name + " - " + this.getStringPrice();
@@ -187,4 +191,53 @@ public class Car {
 				 + this.rating + " - "
 				 + this.combinedScore;
 	 }
+	 
+	 
+	 // For use with HTML
+	 public String[] getItems(int choice) {
+		 switch(choice) {
+			 case 1 : return getPriceEntryItems();
+			 case 2 : return getSpecEntryItems();
+			 case 3 : return getRatingsEntryItems();
+			 case 4 : return getScoreEntryItems();
+			 default : return null;
+		 }
+	 }
+	 
+	 private String[] getPriceEntryItems() {
+		 //	{Vehicle name}, {Price}
+		 return new String[] {this.name, this.getStringPrice()};
+	 }
+	 
+	 private String[] getSpecEntryItems() {
+		 //	{Vehicle name}, {SIPP}, {Car type}, {Car type/doors},{Transmission}, {Fuel}, {Air con}
+		 return new String[] {this.name, 
+				  this.sipp, 
+				  this.type,
+				  this.form,
+				  this.transmission,
+				  this.fuel,
+				  this.aircon
+				  };
+	 }
+	 
+	 private String[] getRatingsEntryItems() {
+		 //	{Vehicle name}, {Car type}, {Supplier}, {Rating}
+		 return new String[] {this.name,
+				  this.type,
+				  this.supplier,
+				  String.valueOf(this.rating)
+				  };
+	 }
+	 
+	 private String[] getScoreEntryItems() {
+		 //	{Vehicle name}, {Vehicle score}, {Supplier rating}, {Sum of scores}
+		 return new String[] {this.name,
+				 String.valueOf(this.vehicleScore),
+				 String.valueOf(this.rating),
+				 String.valueOf(this.combinedScore)
+				 };
+	 
+	 }
+	 
 }

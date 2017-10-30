@@ -14,13 +14,21 @@ public class RestAPIController {
 	
 	private String htmlHeader = "<link href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css\" rel=\"stylesheet\" integrity=\"sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u\""
 		    + "crossorigin=\"anonymous\">"
+		    + "<link href=\"https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.0/bootstrap-table.min.css\" rel=\"stylesheet\"/>"
 		    + "<h1>RentalCars Graduate Application - Technical Exercise</h1>"
 		    + "<a href=\"/price-list\">Price List</a><br>" 
 		    + "<a href=\"/spec-list\">Specification List</a><br>"
 		    + "<a href=\"/rating-list\">Ratings List</a><br>"
-		    	+ "<a href=\"/spec-list\">Specification List</a>"
+		    	+ "<a href=\"/scores-list\">Scores List</a>"
 		    	+ "<hr>";
 	
+	private String htmlFooter = "<script src=\"https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js\"></script><script src=\"https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/jquery.dataTables.min.js\"></script><script src=\"https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.13/js/dataTables.bootstrap4.min.js\"></script>"
+			+ "<script>"
+			+ "$(document).ready(function() {\n"
+			+ "  $('#cars').DataTable();\n"
+			+ "})"
+			+ "</script>";
+			
 	RestAPIController(){
 		try {
 			URL dataURL = new URL("http://www.rentalcars.com/js/vehicles.json");
@@ -33,38 +41,32 @@ public class RestAPIController {
 	
 	@RequestMapping("/price-list")
     public String priceList() {
-        return formatHtml(htmlHeader + formatToTable(dh.getPriceList(cars)));
+        return formatHtml(dh.getPriceListHTML(cars));
     }
 	
 	@RequestMapping("/spec-list")
     public String specList() {
-        return formatHtml(htmlHeader + formatToTable(dh.getSpecList(cars)));
+        return formatHtml(dh.getSpecListHTML(cars));
     }
 	
 	@RequestMapping("/rating-list")
     public String ratingList() {
-        return formatHtml(htmlHeader + formatToTable(dh.getRatingsList(cars)));
+        return formatHtml(dh.getRatingsListHTML(cars));
     }
 	
 	@RequestMapping("/scores-list")
     public String scoresList() {
-        return formatHtml(htmlHeader + formatToTable(dh.getScoresList(cars)));
+        return formatHtml(dh.getScoresListHTML(cars));
     }
 	
-	private String formatToTable(String str) {
-		String[] items = str.split("\n");
-		String output = "<ul class=\"list-group\">\n";
-		for(String item: items) {
-			output += "<li class=\"list-group-item\">" + item + "</li>";
-		}
-		output += "</ul></div></div></div>";
-		return output;
+	private String formatHtml(String contents) {
+		return  "<div class=\"container\">\n" + 
+				"<div class=\"row justify-content-md-center\">" +
+				this.htmlHeader +
+				contents + 
+				"</div></div>" +
+				this.htmlFooter;
 	}
 	
-	private String formatHtml(String str) {
-		return 	"<div class=\"container\">\n" + 
-				"<div class=\"row justify-content-md-center\">" +
-				str + 
-				"</div></div>";
-	}
+	
 }

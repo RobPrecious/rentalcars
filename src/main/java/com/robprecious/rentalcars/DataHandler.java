@@ -111,5 +111,102 @@ public class DataHandler {
 		return outputStr;
 	}
 	
+	public String getPriceListHTML(List<Car> cars) {
+		String[] headings = new String[]{"#", "Name", "Price"};
 
+		Collections.sort(cars, new Comparator<Car>(){
+		    public int compare(Car c1, Car c2) {
+		        return Double.compare(c1.getPrice(),c2.getPrice());
+		    }
+		});
+		
+		return  "<h2>RentalCars Price List</h2>\n" + formatToTable(headings, htmlTableContents(cars,1));
+	}
+	
+	public String getSpecListHTML(List<Car> cars) {
+		String[] headings = new String[]{"#", "Name", "SIPP", "Type", "Doors", "Transmission", "Fuel", "AC"};
+
+		Collections.sort(cars, new Comparator<Car>(){
+		    public int compare(Car c1, Car c2) {
+		    		return -Double.compare(c1.getCombinedScore(),c2.getCombinedScore());
+		    }
+		});
+		
+		return  "<h2>RentalCars Specification List</h2>\n" + formatToTable(headings,  htmlTableContents(cars,2));
+	}
+	
+
+	public String getRatingsListHTML(List<Car> cars) {
+		String[] headings = new String[]{"#", "Name", "Type", "Supplier", "Rating"};
+
+		Collections.sort(cars, new Comparator<Car>(){
+		    public int compare(Car c1, Car c2) {
+		    		return -Double.compare(c1.getRating(),c2.getRating());
+		    }
+		});
+		
+		return  "<h2>RentalCars Ratings List</h2>\n" + formatToTable(headings,  htmlTableContents(cars,3));
+	}
+	
+	public String getScoresListHTML(List<Car> cars) {
+		String[] headings = new String[]{"#", "Name", "Car Rating", "Supplier Rating", "Combined Rating"};
+
+		Collections.sort(cars, new Comparator<Car>(){
+		    public int compare(Car c1, Car c2) {
+		    		return -Double.compare(c1.getCombinedScore(),c2.getCombinedScore());
+		    }
+		});
+		
+		return  "<h2>RentalCars Scores List</h2>\n" + formatToTable(headings,  htmlTableContents(cars,4));
+
+	}
+	
+	// HTML Formatting functions
+	private String htmlTableContents(List<Car> cars, int itemsIndex) {
+		String outputRow = "";
+		String outputTable = "";
+
+		Integer index = 1;
+		for (Car car : cars) {
+			outputRow = htmlRowHeader(String.valueOf(index));
+			
+			for(String item : car.getItems(itemsIndex)){
+				outputRow += htmlCell(item);
+			}
+			
+			outputTable += htmlRow(outputRow);
+
+			index ++;
+		}
+		
+		return outputTable;
+	}
+	
+	private String htmlRowHeader(String item) {
+		return "<th scope=\"row\">"+ item + "</th>\n";
+	}
+	
+	private String htmlCell(String item) {
+		return "<td>"+ item + "</td>\n";
+	}
+	
+	private String htmlRow(String content) {
+		return "<tr>\n"+ content + "</tr>\n";
+	}
+	
+	private String formatToTable(String[] headings, String contents) {
+		
+		String output = "<table class=\"table table-sm\" id=\"cars\">\n" + 
+						"<thead>\n" + 
+						"<tr>\n";
+		for(String heading: headings) {
+			output += "<th scope=\"col\">"+heading+"</th>\n";
+		}
+		output += "</tr>\n</thead>\n<tbody>\n";
+		
+		output += contents;
+		
+		output += "</tbody>\n</table>";
+		return output;
+	}
 }
