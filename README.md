@@ -1,8 +1,8 @@
 # RentalCars Graduate Application - Technical Exercise
 
 ## Requirements
-Java 8
-Maven
+1. Java 8
+2. Maven
 
 
 ## Part 1 (checkout part1 branch)
