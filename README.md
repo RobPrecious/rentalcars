@@ -1,6 +1,11 @@
 # RentalCars Graduate Application - Technical Exercise
 
-## Part 1
+## Requirements
+Java 8
+Maven
+
+
+## Part 1 (checkout part1 branch)
 ![Part 1 screenshot](https://github.com/RobPrecious/rentalcars/blob/master/wiki/part1.png)
 ```
 mvn package
@@ -9,7 +14,7 @@ java -jar target/rental-cars-1.0-SNAPSHOT.jar
 
 
 
-## Part 2
+## Part 2 (checkout master or part 2 branch)
 ![Part 2 screenshot](https://github.com/RobPrecious/rentalcars/blob/master/wiki/part2.png)
 
 ```
